@@ -1,0 +1,15 @@
+*.bit
+*.xsa
+*.xpr
+*.cache/
+*.runs/
+*.sim/
+*.ip_user_files/
+*.gen/
+*.hw/
+*.srcs/
+vitis_ws/
+.Xil/
+*.log
+*.jou
+*.str
