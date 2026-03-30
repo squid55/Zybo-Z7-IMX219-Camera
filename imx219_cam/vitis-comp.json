@@ -1,0 +1,18 @@
+{
+  "name": "imx219_cam",
+  "type": "HOST",
+  "platform": "/home/hyeonjun/imx219_pcam_project/imx219_zybo_platform/export/imx219_zybo_platform/imx219_zybo_platform.xpfm",
+  "domain": "standalone_ps7_cortexa9_0",
+  "cpuInstance": "ps7_cortexa9_0",
+  "cpuType": "cortex-a9",
+  "os": "standalone",
+  "configuration": {
+    "componentType": "HOST",
+    "hostToolchainConfigurations": []
+  },
+  "domainRealName": "standalone_ps7_cortexa9_0",
+  "applicationFlow": "EMBEDDED",
+  "previousBuildStatusMap": {
+    "hw": "SUCCESS"
+  }
+}
