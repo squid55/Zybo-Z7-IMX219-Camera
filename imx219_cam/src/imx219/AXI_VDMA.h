@@ -56,7 +56,7 @@ public:
 		pfn->operator()(mask_or_type);
 	}
 
-	AXI_VDMA(uint16_t dev_id, uint32_t frame_buf_base_addr, IrptCtl& irpt_ctl, uint16_t rd_irpt_id, uint16_t wr_irpt_id) :
+	AXI_VDMA(UINTPTR dev_id, uint32_t frame_buf_base_addr, IrptCtl& irpt_ctl, UINTPTR rd_irpt_id, UINTPTR wr_irpt_id) :
 		rd_handler_(std::bind(&AXI_VDMA::readHandler, this, std::placeholders::_1)),
 		wr_handler_(std::bind(&AXI_VDMA::writeHandler, this, std::placeholders::_1)),
 		rd_err_handler_(std::bind(&AXI_VDMA::readErrorHandler, this, std::placeholders::_1)),

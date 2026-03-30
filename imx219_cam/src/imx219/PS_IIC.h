@@ -41,7 +41,7 @@ public:
 		pfn->operator()(StatusEvent);
 	}
 
-	PS_IIC(uint16_t dev_id, IrptCtl& irpt_ctl, uint32_t irpt_id, uint32_t sclk_rate_Hz) :
+	PS_IIC(UINTPTR dev_id, IrptCtl& irpt_ctl, UINTPTR irpt_id, uint32_t sclk_rate_Hz) :
 		drv_inst_(),
 		irpt_ctl_(irpt_ctl),
 		stat_handler_(std::bind(&PS_IIC::StatusHandler, this, _1))

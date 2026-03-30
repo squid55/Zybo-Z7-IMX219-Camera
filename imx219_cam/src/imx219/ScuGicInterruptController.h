@@ -23,7 +23,7 @@ class ScuGicInterruptController
 public:
 	typedef Xil_InterruptHandler Handler;
 	typedef XStatus	Errc;
-	ScuGicInterruptController(uint16_t dev_id) :
+	ScuGicInterruptController(UINTPTR dev_id) :
 		drv_inst_()
 	{
 		XScuGic_Config* config = XScuGic_LookupConfig(dev_id);

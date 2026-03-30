@@ -28,12 +28,12 @@ extern "C" {
 /* ===== SDT mode: use BASEADDR instead of DEVICE_ID ===== */
 #define IRPT_CTL_DEVID      XPAR_XSCUGIC_0_BASEADDR
 #define GPIO_DEVID           XPAR_XGPIOPS_0_BASEADDR
-#define GPIO_IRPT_ID         XPAR_XGPIOPS_0_INTERRUPTS
+#define GPIO_IRPT_ID         52
 #define CAM_I2C_DEVID        XPAR_XIICPS_0_BASEADDR
-#define CAM_I2C_IRPT_ID      XPAR_XIICPS_0_INTERRUPTS
+#define CAM_I2C_IRPT_ID      57
 #define VDMA_DEVID           XPAR_XAXIVDMA_0_BASEADDR
-#define VDMA_MM2S_IRPT_ID    XPAR_AXI_VDMA_0_INTERRUPTS
-#define VDMA_S2MM_IRPT_ID    XPAR_AXI_VDMA_0_INTERRUPTS_1
+#define VDMA_MM2S_IRPT_ID    30
+#define VDMA_S2MM_IRPT_ID    31
 #define CAM_I2C_SCLK_RATE    100000
 
 #define DDR_BASE_ADDR        XPAR_PS7_DDR_0_BASEADDRESS
@@ -104,9 +104,15 @@ int main()
     xil_printf("====================================\r\n\r\n");
 
     /* Initialize camera pipeline */
+    xil_printf("1. ScuGic init...\r\n");
     ScuGicInterruptController irpt_ctl(IRPT_CTL_DEVID);
+    xil_printf("1. ScuGic OK\r\n");
+    xil_printf("2. GPIO init...\r\n");
     PS_GPIO<ScuGicInterruptController> gpio_driver(GPIO_DEVID, irpt_ctl, GPIO_IRPT_ID);
+    xil_printf("2. GPIO OK\r\n");
+    xil_printf("3. IIC init...\r\n");
     PS_IIC<ScuGicInterruptController> iic_driver(CAM_I2C_DEVID, irpt_ctl, CAM_I2C_IRPT_ID, 100000);
+    xil_printf("3. IIC OK\r\n");
 
     xil_printf("Initializing IMX219 camera...\r\n");
 

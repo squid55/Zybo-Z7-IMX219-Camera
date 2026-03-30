@@ -38,7 +38,7 @@ namespace IMX219_cfg {
 	};
 	using config_modes_t = struct { mode_t mode; config_word_t const* cfg; size_t cfg_size; };
 
-	/* ===== IMX219 Common Init Registers ===== */
+	/* ===== IMX219 Common Init Registers (verified working) ===== */
 	config_word_t const cfg_init_[] =
 	{
 		/* Software Reset */
@@ -60,40 +60,43 @@ namespace IMX219_cfg {
 		{0x012A, 0x18},  /* EXCK_FREQ[15:8] = 24MHz */
 		{0x012B, 0x00},  /* EXCK_FREQ[7:0] */
 
-		/* Frame/line length default (overridden by mode) */
-		{0x0160, 0x06},  /* FRM_LENGTH_A[15:8] */
-		{0x0161, 0xE2},  /* FRM_LENGTH_A[7:0] = 1762 */
-		{0x0162, 0x0D},  /* LINE_LENGTH_A[15:8] */
-		{0x0163, 0x78},  /* LINE_LENGTH_A[7:0] = 3448 */
-
-		/* Analog gain */
-		{0x0157, 0x00},  /* ANA_GAIN_GLOBAL_A */
-		{0x0158, 0x01},  /* DIG_GAIN_GLOBAL_A[15:8] */
-		{0x0159, 0x00},  /* DIG_GAIN_GLOBAL_A[7:0] */
-
-		/* Exposure */
-		{0x015A, 0x03},  /* COARSE_INTEGRATION_TIME_A[15:8] */
-		{0x015B, 0xE8},  /* COARSE_INTEGRATION_TIME_A[7:0] */
-
 		/* Output format: RAW10 */
 		{0x018C, 0x0A},  /* CSI_DATA_FORMAT_A[15:8] = RAW10 */
 		{0x018D, 0x0A},  /* CSI_DATA_FORMAT_A[7:0] */
+		{0x0170, 0x01},  /* X_ODD_INC_A */
+		{0x0171, 0x01},  /* Y_ODD_INC_A */
 
-		/* MIPI PHY timing */
-		{0x0171, 0x01},
-		{0x0174, 0x00},  /* BINNING_MODE_H: no binning */
-		{0x0175, 0x00},  /* BINNING_MODE_V: no binning */
-
-		/* PLL settings for 24MHz input */
+		/* PLL settings for 24MHz input, 2-lane */
 		{0x0301, 0x05},  /* VTPXCK_DIV */
 		{0x0303, 0x01},  /* VTSYCK_DIV */
 		{0x0304, 0x03},  /* PREPLLCK_VT_DIV */
 		{0x0305, 0x03},  /* PREPLLCK_OP_DIV */
 		{0x0306, 0x00},  /* PLL_VT_MPY[10:8] */
-		{0x0307, 0x39},  /* PLL_VT_MPY[7:0] = 57 */
+		{0x0307, 0x52},  /* PLL_VT_MPY[7:0] = 82 */
 		{0x030B, 0x01},  /* OPSYCK_DIV */
 		{0x030C, 0x00},  /* PLL_OP_MPY[10:8] */
-		{0x030D, 0x72},  /* PLL_OP_MPY[7:0] = 114 */
+		{0x030D, 0x55},  /* PLL_OP_MPY[7:0] = 85 */
+
+		/* Undocumented but required registers */
+		{0x455E, 0x00},
+		{0x471E, 0x4B},
+		{0x4767, 0x0F},
+		{0x4750, 0x14},
+		{0x4540, 0x00},
+		{0x47B4, 0x14},
+		{0x4713, 0x30},
+		{0x478B, 0x10},
+		{0x478F, 0x10},
+		{0x4793, 0x10},
+		{0x4797, 0x0E},
+		{0x479B, 0x0E},
+
+		/* Analog gain & exposure */
+		{0x0157, 0x80},  /* ANA_GAIN_GLOBAL_A */
+		{0x020E, 0x01},  /* DIG_GAIN_GR[15:8] */
+		{0x020F, 0x00},  /* DIG_GAIN_GR[7:0] */
+		{0x015A, 0x03},  /* COARSE_INTEGRATION_TIME_A[15:8] */
+		{0x015B, 0x51},  /* COARSE_INTEGRATION_TIME_A[7:0] */
 	};
 
 	/* ===== 1280x720 @ 60fps ===== */
